@@ -37,7 +37,7 @@ app.get("/api/large", (req, res) => {
 })
 
 app.get("/", (req, res) => {
-    res.send(path.join(__dirname, "pages", "index.html"));
+    res.sendFile(path.join(__dirname, "pages", "index.html"));
 })
 
 app.listen(process.env.PORT || 8000, () => {
