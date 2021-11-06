@@ -10,4 +10,5 @@ Note: You don't have to enter a client ID and client secret right now as we are 
 
 4. To activate your new social provider for the application, open the Social Providers menu, go to "Applications" and turn on the application you have registered before. When you now try to authenticate again (follow Step 2) you will be able to use your social provider to access the application.
 
-Congratulations, our login now looks and works a lot more like Pizza0 intended it to! This concludes our initial configuration of the Auth0 platform.
+### Congratulations, you just made Pizza0 a lot more appealing! 
+If you are doing this lab in a guided class, please wait for your instructor to continue the course. Otherwise, you may proceed to the next lab to make your platform fit for business customers and give them a great login experience!

@@ -7,25 +7,19 @@ Try to come up with a unique name for your organization to avoid conflicting wit
 Once you have entered your detail, you should receive a password for your user as well as a client ID that you can use to set up the SSO connection.
 Please note both as we will need it throughout the lab to login into Okta.
 
-1. Set up OIDC enterprise connection (use client ID and tenant from website above) and make sure the connection is enabled for your application.
-To do so, go to Authentication --> Enterprise --> Open ID connect and click create connection.
-Enter a connection name and copy the Issuer URL and ClientID from the organisation you just created.. Then click create.
+1. In order to let the newly created organization sign into our application, you have to register it as a new OpenID Connect (OIDC) enterprise connection. To do so, go to Authentication --> Enterprise --> Open ID connect in the Auth0 Dasboard and click create connection. Enter a connection name (this can be anything) and copy the Issuer URL and ClientID from the organisation you just created. Click on "Create" to complete the setup.
+2. To make sure users are actually redirected to your new organization, click on "Login Experience" in your newly created connection. Add the domain of your newly created user into the "Identity Provider Domains" (e.g. example.com if your user was called test@example.com) and click on "Save" on the bottom of the page. Lastly, go to "Applications" and make sure your connection is enabled for your Pizza0 application.
+3. Open an incognito window and sign into your application again (by clicking the login button). When you enter your newly created user now (e.g. test@example.com), you should be redirected to your newly created organization and be able to sign in with the credentials that you received when registering the organization.
 
-2. Configure Home Realm Discovery in new OIDC enterprise connection (set to domain of your user, if user is someone@example.com then enter example.com as HRD domain)
-To do so, enter the connection by clicking on it and go to the Login Experience tab. You can enter the HRD domain in the Identity Provider domains input box.
+4. Auth0 has a native concept of Organizations that makes it easier for you as a developer to organize and manage all your business customers and their login into your solution. To create an organization, go to "Organizations" in the sidebar of the Auth0 Dashboard and click on "Create Organization". Give it an easy to remember name (users will need it when signing into your app) and click "Add Organization.
+5. Next, you need to enable the OIDC connection you just created in the new organization. In your organization, go to "Connections" -> "Enable Connections". Find the connection you have previously created and click "Enable Connection". In the next window, click on "Enable Auto-Membership" and "Save". This means that users who will access your app through this connection will automatically be part of your organization.
 
-3. Sign into your app and enter (??)
-4. Create organization (give it name of organization you specified on website).
+6. Lastly, we need to let our Pizza0 application know that we expect business users to sign in instead of everyday end users. Find your application by navigating to "Applications" -> "Applications" in the Auth0 Dashboard and click on the application you have registered previously. In the following window you will find a tab called "Organizations". Navigate to that, enable the Display Organization Prompt and set the dropdown to "Team members of organizations". 
+Note: Eventually the option to enable organizations will be greyed out. There will be a warning box that some login grants have to be disabled first. Click on "Disable Grants Now" and proceed. 
 
-5. Enable OIDC enterprise connection on organization and enable auto-membership.
-You can access this by clicking on the organization you've just created and then go in to the Connections tab.
-Then you can enable connection and you can then select the connection you've just created.
+7. Return to your Pizza0 site and click on login. You will now be asked to enter your organizations name (which is the one you gave to your organization when you registered it). The login will automatically redirect you to your Identity Provider (aka Okta if you follow the lab), where you can sign in with your users credentials. After successful login you should now have an organization ID displayed in the header of the Pizza0 site.
 
-6. Go to Auth0 Application and enable login for organizations only.
-Applications --> Applications --> Select your application --> Organizations
-Enable the Display Organization Prompt and set the dropdown to "Team members of organizations"
+### Congratulations, you can now start your successful B2B business! 
+By completing these steps we now can safely integrate our business customers into our application and even make sure to keep track of them through organizations. Under the hood, this brings a lot of value: Your customers admins can still provision / deprovision users, control who has access to your app, and see how frequently your app is used. And you just saved a few days of building your own OpenID Connect integration! 
 
-7. Return to the pizza site, click on login, enter your organization name, sign in. (Observe that we now have an org_id displayed on our website).
-
-
-Congrats
+If you are doing this lab in a guided class, please wait for your instructor to continue the course. Otherwise, you may proceed to the next lab to see how you can give your application a lot more information about our users.

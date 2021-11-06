@@ -14,5 +14,4 @@ Pizza0 uses Node.js to host their services and they want to evaluate Auth0 to pr
 5. Save your project and start it up (by typing `node server.js`). Then open a new Incognito window (this is important to actually see the login flow and not be signed in automatically), navigate to http://localhost:3000 and click on login. You can now sign in with your Auth0 credentials, and a consent screen should appear that you can accept. 
 
 ### Congratulations, you now have a working login form! 
-If you are doing this lab in a guided class, please wait for thei instructor to continue the course. Otherwise, you may proceed to customizing the login to resemble the Pizza0 brand and user journey better.
-
+If you are doing this lab in a guided class, please wait for your instructor to continue the course. Otherwise, you may proceed to customizing the login to resemble the Pizza0 brand and user journey better.
