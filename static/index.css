@@ -1,0 +1,65 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #EAECEE;
+    color: #635DFF;
+    margin: 0;
+    padding: 20px;
+}
+
+header .sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#overview,
+#cta {
+    margin: 40px 20%;
+}
+
+section {
+    margin: 20px;
+    text-align: justify;
+}
+
+section.list {
+    display: flex;
+    align-items: center;
+    background-color: #EAECEE;
+    padding: 20px;
+}
+
+section .number {
+    font-size: 150%;
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.next-lab {
+    display: block;
+    margin: 20px;
+    padding: 20px 40px;
+    background-color: #635DFF;
+    font-size: 100%;
+    color: white;
+    border: 0;
+    width: fit-content;
+}
+
+details p {
+    padding-left: 20px;
+}
+
+code {
+    background-color: #0A0A0A;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    margin: 10px 0;
+}

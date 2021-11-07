@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Auth0 B2B SaaS Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Auth0 B2B SaaS Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: Customizing the login form</i></h3>
+            <p>Powered by Auth0</p>
+            <a href="/">Back to Overview</a>
+        </div>
+    </header>
+
+    <section id="overview">
+        We now have our simple login in place and users could sign into the Pizza0 application. It does look very generic though and lacks the official Pizza branding. Also, individual customers often use Social Sign-In to access the service which the service
+        doesn't support at the moment as well. Let's change that!
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            In the Auth0 dashboard (manage.auth0.com), navigate to "Branding" -> "Universal Login" in the sidebar menu. There, enter the logo of Pizza0 as well as the primary and background color specified. You can find all this information in your project under
+            "styleguide.md" or <a href="https://github.com/urmade/Auth0-B2B-SaaS-Lab/blob/master/styleguide.md">here</a>.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            Click on "Save", close your existing Incognito tab and re-open it (this clears the existing session so we can see the actual login). Navigate to localhost:3000 and retry your login.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            To enable a Social Login, navigate to "Authentication" -> "Social" in the sidebar menu. Google should already be listed as a provider here. To add another social network, click on "Add" and choose one of the social networks presented. Preferrably choose
+            one that you have an account with to test the login afterwards. Choose your preferred provider and follow the guidance to enable it.
+            <br><br>Note: You don't have to enter a client ID and client secret right now as we are just testing this feature. In production deployments, we would always recommend setting your own client ID and client secret.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            4
+        </div>
+        <div class="content">
+            To activate your new social provider for the application, open the Social Providers menu, go to "Applications" and turn on the application you have registered before. When you now try to authenticate again (follow Step 2) you will be able to use your
+            social provider to access the application.
+        </div>
+    </section>
+    <section id="cta">
+        Congratulations, you just made Pizza0 a lot more appealing! If you are doing this lab in a guided class, please wait for your instructor to continue the course. Otherwise, you may proceed to the next lab to make your platform fit for business customers
+        and give them a great login experience!
+        <a href="/module-3" class="next-lab">To the next lab</a>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Auth0 B2B SaaS Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the Auth0 B2B SaaS Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: Integrating Auth0 into our application</i></h3>
+            <p>Powered by Auth0</p>
+            <a href="/">Back to Overview</a>
+        </div>
+    </header>
+
+    <section id="overview">
+        Pizza0 uses Node.js to host their services and they want to evaluate Auth0 to provide the login and user management. In order to get started, make sure you have your Auth0 tenant set up (as described in <a href="/module-0">Prerequisites</a>).
+        To get started with the integration, do the following:
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            Sign in to <a href="https://manage.auth0.com" target="_blank">manage.auth0.com</a>.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            Go to "Applications" and register a new "Regular Web Application". You can give it any name, for example "Pizza0".
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            On the prompted Quick Start menu, choose Node.js (Express) and "I want to integrate with my app".On the prompted Quick Start menu, choose Node.js (Express) and "I want to integrate with my app".
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            4
+        </div>
+        <div class="content">
+            Follow the guidance on screen to set up your integration.
+            <br><br> Hints:
+            <details>
+                <summary>Configuration</summary>
+                <p>Our server is running on http://localhost:3000, and the SDK will automatically register a new /callback route, so we can leave the default settings for callback URL (the URL a user is allowed to be redirected to after successful login)
+                    and logout URL.
+                </p>
+            </details>
+            <br>
+            <details>
+                <summary>Installing dependencies</summary>
+                <p>
+                    To install the Node.js package, open your terminal and paste the provided statement<br><code>npm install express express-openid-connect --save</code>
+                </p>
+
+            </details>
+            <br>
+            <details>
+                <summary>Code integration</summary>
+                <p>
+                    When copying the code provided into your project, only paste until (including) the <code>app.use</code> statement. We already have an <code>app.get("/")</code> handler in our project, so we are interested only in the part that checks
+                    if the user is already authenticated. Second hint: Replace <code>&lt;user is authenticated&gt;</code> in the project with <code>req.oidc.isAuthenticated()</code>. This will automatically check if the user is signed in and load the
+                    order.html page if that is the case.
+                </p>
+                </code>
+            </details>
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            5
+        </div>
+        <div class="content">
+            Save your project and start it up (by typing <code>node server.js</code> into your terminal). Then open a new Incognito window (this is important to actually see the login flow and not be signed in automatically), navigate to http://localhost:3000
+            and click on login. You can now sign in with your Auth0 credentials, and a consent screen should appear that you can accept.
+        </div>
+    </section>
+    <section id="cta">
+        Congratulations, you now have a working login form! If you are doing this lab in a guided class, please wait for your instructor to continue the course. Otherwise, you may proceed to customizing the login to resemble the Pizza0 brand and user journey
+        better.
+        <a href="/module-2" class="next-lab">To the next lab</a>
+    </section>
+</body>
+
+</html>
