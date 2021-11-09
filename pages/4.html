@@ -36,7 +36,7 @@
         </div>
         <div class="content">
             To get this information to our application, we need to utilize Auth0 Actions. Actions are JavaScript code snippets that run during the login flow (or in other places, depending on where you integrate them) and which allow you to modify the login flow
-            to your liking. To build our action, go to "Actions" in the Auth0 Sidebar and select "Login" (This is where the action will be executed). In the top right, click on the plus next to "Add Action" -> "Custom". Give you action some expressive
+            to your liking. To build our action, go to "Actions" -> "Flows" in the Auth0 Sidebar and select "Login" (This is where the action will be executed). In the top right, click on the plus next to "Add Action" -> "Build Custom". Give you action some expressive
             name (like "Enrich ID Token") and click on "Create". In the code editor you have just opened, you can now write your logic to add two new attributes (called claims) to the ID Token that Auth0 issues on every login. The two claims we need are
             the following:
             <ul>
