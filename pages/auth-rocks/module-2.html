@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CIC Acceleration Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the CIC Acceleration Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: API Protection</i></h3>
+            <p>Powered by Okta</p>
+            <a href="/rocks/module-0">Back to Overview</a>
+        </div>
+    </header>
+
+
+    <section id="overview">Challenge 2 Overview – Protect the API<br>
+        This challenge will use a custom API for minting tokens to grant access to the various APIs. This demonstrates
+        how it's possible to decorate a token with additional information.
+
+        There are three API endpoints that have varying levels of protection but have no fear, by the end of the
+        AuthRocks Challenge 3 you will be able to access them all.
+        <img
+            src="https://play.instruqt.com/assets/tracks/lv1a1mjocuht/e9066ffacb08c89c9d34896635b92674/assets/images/challenge-2/challenge-2-cic-1.png">
+
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            <h2>Setup Application API</h2>
+            <ol>
+                <li>Open the Okta CIC Management Dashboard</li>
+                <li>In the left menu panel, expand the Applications option. </li>
+                <li>Click APIs</li>
+                <li>
+                    Click + Create API
+                    <ol>
+                        <li>Set the Name value to My AuthRocks API</li>
+                        <li>Set the Identifier value to api://authrocks/</li>
+                        <li>Click Create</li>
+                    </ol>
+                </li>
+                <li>Click the Settings tab</li>
+                <li>Scroll down to the RBAC Settings section</li>
+                <li>Toggle on Enable RBAC</li>
+                <li>Toggle on Add Permissions in the Access Token</li>
+                <li>
+                    Scroll down and click Save
+                    <ul>
+                        <li>
+                            You will get a pop-up banner indicating "The changes have been saved for My AuthRocks API."
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            Congratulations, you've completed task 2.1.
+
+            A custom API, Role and Permissions have been setup in your Okta CIC tenant in order to create OAuth tokens
+            used for accessing secured API endpoints.
+
+        </div>
+
+    </section>
+    <section id="lab" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            In this task, we will set up a Glitch API application that provides the API endpoints. Once this application
+            has been deployed, we will update our Glitch UI application to enable it to call these API endpoints.
+
+            More importantly, the Glitch UI application will leverage the custom API, created in the previous task, to
+            obtain the necessary OAuth tokens required to access some of the API endpoints.
+
+            <h2>Setup Glitch API Application</h2>
+
+            <ol>
+                <li>Ensure that you are logged into Glitch</li>
+                <li>Go to https://glitch.com/~authrocks-cic-api-template</li>
+                <li>
+                    Scroll down and click the Remix your own button to remix the project
+                    <blockquote>
+                        Remixing will give you a copy of the project that you can edit in your account. Glitch will
+                        assign a new, randomly generated name to your project, and a Glitch URL. For example:
+                        sable-inquistive-honesty
+                    </blockquote>
+                    <blockquote>
+                        (Recommended) Change the name of your Glitch application. Click Settings then click Edit Project
+                        Details and enter a new PROJECT NAME. Add "api-" to the front of the generated name so it's
+                        clear that this is the API application.
+                    </blockquote>
+                </li>
+                <li>
+                    Click Settings > Edit Project Details and change the PROJECT NAME
+                </li>
+                <li>Click Save</li>
+            </ol>
+
+            <h2>Launch the remixed Glitch application</h2>
+            <ol>
+                <li>
+                    At the bottom of the browser page, click the Preview link and click Preview in a new window
+                </li>
+                <li>
+                    You will see the application home page
+                </li>
+                <li>
+                    Copy the URL of your Glitch API application from your browser
+                </li>
+                <li>
+                    Paste the Live site value to glitch_api_url in the worksheet. Remember to save your changes.
+                </li>
+            </ol>
+            Congratulations, with your changes saved you're ready to continue on to task 2.3
+        </div>
+    </section>
+    <section id="lab" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            <ol>
+                <li>
+                    In Glitch, go to the source code page of your Glitch application and in the left menu panel under
+                    Files,
+                    click auth_config.json.
+                </li>
+                <li>Set the domain value to the value of cic_domain from your worksheet</li>
+                <li>Set the clientId value to the value of cic_app_client_id from your worksheet</li>
+                <li>Set the audience to api://authrocks/</li>
+                <li>
+                    Set the permissions value to authRocks
+                </li>
+            </ol>
+        </div>
+    </section>
+    <section id="cta">
+        In this challenge, you set up a custom API, Role and Permissions within your Okta CIC tenant to enable the
+        creation of OAuth access tokens used for accessing secured API endpoints.
+
+        You also created a Glitch API app that exposes three secured API endpoints. The app was also configured to
+        leverage the domain, audience, and permission values from your Okta CIC tenant
+
+        Please continue to Challenge 3 where you will configure the Glitch UI app so that it can call the Glitch API
+        app's protected endpoints.
+
+
+
+        <a href="/rocks/module-3" class="next-lab">To the next challenge</a>
+    </section>
+</body>
+
+</html>

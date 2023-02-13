@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CIC Acceleration Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the CIC Acceleration Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: Okta CIC Integration</i></h3>
+            <p>Powered by Okta</p>
+            <a href="/rocks/module-0">Back to Overview</a>
+        </div>
+    </header>
+
+
+    <section id="overview">Challenge 1 Overview – Single Page Application (SPA) Sign-on<br>
+        We will now create a single page application (SPA) in Glitch which will serve as the user interface (UI) for the
+        learner. The SPA will leverage Okta CIC for user authentication purposes.
+
+        We will configure the Okta CIC tenant to provide authentication services using OpenID Connect (OIDC) for the
+        application.
+
+        When you are done with this exercise you will have a customizable login to the SPA and the ability to view the
+        JSON Web Tokens (JWTs) which contain the Access and ID tokens provided by Okta CIC.
+        <img
+            src="https://play.instruqt.com/assets/tracks/lv1a1mjocuht/37a251de7b986ff797e376f49dd01929/assets/images/challenge-1/challenge-1-cic-1.png">
+
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            In this first task, we will use the Glitch platform to deploy a custom SPA to serve as the user interface
+            (UI) for the learner. Once the SPA has been deployed, we'll move onto the next task where we will leverage
+            Okta CIC's management console to set up the SPA in your CIC tenant.
+            <h2>Setup Glitch UI Application</h2>
+            <ol>
+                <li>
+                    Ensure that you are logged into Glitch
+                </li>
+                <li>
+                    Go to <a href="">https://glitch.com/~authrocks-cic-ui-template</a>
+                </li>
+                <li>
+                    Scroll down and click the Remix your own button to remix the project
+                    <ul>
+                        <li>
+                            Remixing will give you a copy of the project that you can edit in your account. Glitch will
+                            assign a new,
+                            randomly generated name to your project, and a Glitch URL. For example:
+                            sable-inquistive-honesty
+                        </li>
+                        <li>
+                            (Recommended) Change the name of your Glitch application. Click Settings then click Edit
+                            Project Details and enter a new PROJECT NAME. Add "ui-" to the front of the generated name
+                            so it's clear that this is the UI application.
+                        </li>
+                        <li>Click Save</li>
+                    </ul>
+
+                </li>
+                <li>
+                    Launch the remixed Glitch application
+                    <ul>
+                        <li>
+                            At the bottom of the browser page, click the Preview link then click Preview in a new window
+                        </li>
+                        <li>
+                            You will see the application home page with a Log in button that does nothing...for now.
+                        </li>
+                    </ul>
+                </li>
+                <li>Copy the URL of your Glitch application from your browser
+                </li>
+                <li>
+                    Paste the URL into the <code>glitch_ui_app_url</code> field in the <code>worksheet.json</code>.
+                </li>
+                <li>Save the worksheet.</li>
+            </ol>
+            <blockquote>Don't forget to save!</blockquote>
+            Congratulations, you have completed task 1.1 by deploying a custom UI application in the Glitch platform.
+
+            Please continue to task 1.2 below to integrate the application with Okta CIC for identity services.
+
+        </div>
+
+    </section>
+    <section id="lab" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            In this task, we will utilize the Okta CIC Management Dashboard to set up the Glitch UI application within
+            Okta CIC.
+            <h2>Setup the Glitch UI (AuthRocks) Application in Okta CIC </h2>
+            <ol>
+                <li>Sign in to <a href="https://manage.auth0.com" target="_blank">manage.auth0.com</a>.</li>
+                <li>
+                    Go to "Applications" and register a new "Single Page Web Application". You can give it any name, for example "AuthRocks".
+                </li>
+                <li>
+                    Click on the Settings tab
+                </li>
+                <li>
+                    In the Basic Information section, click the copy icon to the right of the Client ID
+                </li>
+                <li>
+                    Paste the Client ID value into the <code>cic_app_client_id</code> value in <code>worksheet.json</code>.
+                </li>
+                <li>
+                    Paste the Domain value into the <code>cic_app_client_id</code> value in <code>worksheet.json</code>.
+                </li>
+                <li>
+                    In the CIC management dashboard, scroll down to the Application URIs section.
+                    <ol>
+                        <li>
+                            Set the value of the <code>Allowed Callback URLs</code> by copying and pasting the <code>glitch_ui_app_url</code> value from your worksheet
+                        </li>
+                        <li>
+                            Set the value of the <code>Allowed Logout URLs</code> to the <code>glitch_ui_app_url</code> value as well
+                        </li>
+                        <blockquote>
+                            NOTE: The Application Login URI can be left blank.
+                        </blockquote>
+                    </ol>
+                </li>
+                <li>
+                    Scroll down the Settings page to the Advanced Settings section and expand it
+                </li>
+                <li>
+                    On the Grant Types tab, uncheck <code>Implicit</code>
+                </li>
+                <li>
+                    Click Save Changes
+                    <ul>
+                        <li>
+                            You should get a pop-up banner that says "Successfully saved your
+                            changes. Changes may take up to 30 seconds before they take effect.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            Congratulations! You've completed task 1.2 of this challenge by using the Okta CIC Management Dashboard to set up the Glitch application. Please continue on to task 1.3   
+        </div>
+    </section>
+    <section id="lab" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            In this task, we will modify the Glitch UI application in order to complete the integration with Okta CIC
+            for identity services. Once the custom application has been modified for integration with Okta CIC, we will
+            test our Glitch UI application and validate that your test user can authenticate successfully.
+            <h2>Modify Glitch UI Application</h2>
+            In Glitch, go to the source code page of your Glitch application and in the left menu panel under Files, click <code>auth_config.json</code>.
+            <ol>
+                <li>
+                    Set the <code>domain</code> value to the value of <code>cic_domain</code> from your worksheet
+
+                </li>
+                <li>
+                    Set the <code>clientId</code> value to the value of <code>cic_app_client_id</code> from your worksheet
+                </li>
+                <li>Set the <code>audience</code> to <code>api://authrocks/</code>
+                    <br><br>
+                    NOTE: Glitch auto-saves so there is no save button.
+                </li>
+            </ol>
+            Congratulations. You've completed task 1.3 by modifying the custom Glitch UI application to complete the
+            integration with Okta CIC. Please continue on to the final task of this challenge.
+            <br>
+            (Optional): If you would like to learn more about the following topics in this task, please see the
+            following:<br>
+            <a href="https://auth0.com/docs/quickstart/spa/vanillajs/interactive">Add Login to your Single Page
+                Application</a>
+        </div>
+    </section>
+    <section id="lab" class="list">
+        <div class="number">
+            4
+        </div>
+        <div class="content">
+            In this section, you will test your custom application and validate that your test user can authenticate
+            successfully.
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                    <blockquote>NOTE: This MUST be a different browser session than the one you have been using</blockquote>
+                    </li>
+                <li>
+                    Browse to the <code>glitch_ui_app_url</code> from the AuthRocks Worksheet
+                </li>
+                <li>
+                    Click the Log in button and you should be prompted to login to your Okta CIC tenant.
+                    <blockquote>
+                        NOTE: If you get the Oops!, something went wrong page then click on the See details for this error link which will show you additional information.
+                    </blockquote>
+                </li>
+                <li>
+                    Click Sign Up on the login screen
+                    <ol>
+                        <li>
+                            Set the Email address to testuser1@test.com
+                        </li>
+                        <li>
+                            Set the Password to super$ecr3t
+                        </li>
+                    </ol>
+                    <blockquote>
+                        NOTE: These values are stored for your convenience as cic_test_user_email and cic_test_user_password
+                    in the worksheet.
+                    </blockquote>
+                </li>
+                <li>Click Continue</li>
+                <li>
+                    Click Accept on the Authorize App screen
+                    <ul>
+                        <li>
+                            If successful, you will see an updated profile logo in the upper right.
+                        </li>
+                        <li>
+                            In the body of the app, you will see your tokens.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+              
+        </div>
+    </section>
+
+
+
+    <section id="cta">
+        Congratulations, you've completed Challenge 1.
+
+        <a href="/rocks/module-2" class="next-lab">To the next challenge</a>
+    </section>
+</body>
+
+</html>

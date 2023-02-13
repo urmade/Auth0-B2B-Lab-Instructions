@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CIC Acceleration Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the CIC Acceleration Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: Actions</i></h3>
+            <p>Powered by Okta</p>
+            <a href="/rocks/module-0">Back to Overview</a>
+        </div>
+    </header>
+
+
+    <section id="overview">
+        Welcome to Challenge 5
+        <br>
+        In this challenge, you will configure a couple of custom Actions within your Okta CIC tenant. These actions will
+        decorate your access token with a custom claim and add a user's email address.
+
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            <h2>
+                Task 5.1 - Configure an Action to decorate an access token
+            </h2>
+            <ol>
+                <li>
+                    Switch to the browser tab where you have your CIC management dashboard open
+                </li>
+                <li>
+                    In the left menu panel, expand the Actions option.
+                </li>
+                <li>
+                    Click Library
+                </li>
+                <li>
+                    Click the Build Custom button.
+                </li>
+                <li>
+                    In the Create Action screen, set the Name to decorateToken.
+                </li>
+                <li>
+                    Select the Login / Post Login trigger since you'll be adding the Action to the login flow.
+                </li>
+                <li>
+                    Click Create.
+                </li>
+                <li>
+                    Paste the following Node.js code into the editor, replacing the template.
+                    <code>
+                        exports.onExecutePostLogin =async(event, api)=>{
+                            api.accessToken.setCustomClaim('access','GRANTED');
+                        };                        
+                    </code>
+                </li>
+                <li>
+                    Click Deploy.
+                    <blockquote>
+                        You should get the message "decorateToken was successfully deployed"
+                    </blockquote>
+                </li>
+                <li>
+                    In the left menu panel of the CIC Management Dashboard, under Actions, click Flows.
+                </li>
+                <li>
+                    Click the Login icon.
+                </li>
+                <li>
+                    In the panel on the right, click the Custom tab.
+                    <blockquote>
+                        You should see your newly created custom action decorateToken.
+                    </blockquote>
+                </li>
+                <li>
+                    Drag and drop the decorateToken custom Action, from the palette on the right, to a spot between the
+                    Start icon and the Complete icon.
+                </li>
+                <li>
+                    Click Apply. This completes deployment of the Action.
+                    <blockquote>
+                        You should see a pop-up banner that says "Login flow updated"
+                    </blockquote>
+                </li>
+            </ol>
+
+            Congratulations! You've completed task 4.1 of this challenge by adding a custom action. Please continue on
+            to section 4:2 to add another one.
+            <br>
+            For information on context that is available in the Login action:
+            <br>
+            <a href="https://auth0.com/docs/customize/actions/flows-and-triggers/login-flow/event-object">Context for
+                Post Login Actions</a>
+
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            Task 5.2 - Create another custom Action
+            <ol>
+                <li>
+                    In the left menu panel of the CIC Management Dashboard, expand the Actions option.
+                </li>
+                <li>
+                    Click Library
+                </li>
+                <li>
+                    Click the Build Custom button.
+                </li>
+                <li>
+                    In the Create Action screen, set the Name to Add email to Access Token.
+                </li>
+                <li>
+                    Select the Login / Post Login trigger since you'll be adding the Action to the login flow.
+                </li>
+                <li>
+                    Click Create.
+                </li>
+                <li>
+                    Paste the following Node code into the editor, replacing the template.
+                    <code>
+                        exports.onExecutePostLogin =async(event, api)=>{
+                            const namespace = 'https://my-app.example.com';
+                            api.accessToken.setCustomClaim(`${namespace}/email`, event.user.email);
+                            };
+                    </code>
+                </li>
+                <li>
+                    Click Save Draft
+                    <blockquote>
+                        You should get the message "Add email to Access Token was successfully updated."
+                    </blockquote>
+                </li>
+                <li>
+                    Click Deploy.
+                    <blockquote>
+                        You should get the message "decorateToken was successfully deployed"
+                    </blockquote>
+                </li>
+                <li>
+                    In the left menu panel of the CIC Management Dashboard, under Actions, click Flows.
+                </li>
+                <li>
+                    Click the Login icon.
+                </li>
+                <li>
+                    In the panel on the right, click the Custom tab.
+                    <blockquote>
+                        You should see your newly created custom action Add email to Access Token.
+                    </blockquote>
+                </li>
+                <li>
+                    Drag and drop the Add email to Access Token custom Action, from the palette on the right, to a spot
+                    between the Start icon and the Complete icon.
+                </li>
+            </ol>
+            Congratulations. You've completed task 5.2 by adding another custom action. Please continue on to the final
+            task of this challenge.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            In this section, we will test our custom actions and validate that your test user's access token contains
+            our enhancements.
+
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                    <br>
+                    NOTE: This MUST be a different browser session than the one you have been using
+                </li>
+                <li>
+                    Browse to the glitch_ui_app_url from the AuthRocks Worksheet
+                </li>
+                <li>
+                    Click the Log in button and you should be prompted to login.
+                </li>
+                <li>
+                    Login with your testuser1@test.com account and super$ecr3t password.
+                </li>
+                <li>
+                    Verify that your access token contains the new token decorations.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="cta">
+        Congratulations, you've completed all our challenges!
+
+        Actions are used to customize and extend Okta CIC's capabilities with custom logic. The processes that can be extended in this way are called flows and each flow is made up of one or more triggers In this challenge, you created two custom Actions to decorate access tokens. You then used the visual flow editor to add the Actions to the Login flow with a simple drag and drop motion.
+
+
+    </section>
+</body>
+
+</html>

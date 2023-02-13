@@ -55,6 +55,10 @@ app.get("/module-5", (req, res) => {
     res.sendFile(path.join(__dirname, "pages", "5.html"));
 })
 
+app.get("/rocks/:module", (req,res) => {
+    res.sendFile(path.join(__dirname, "pages", "auth-rocks", req.params.module + ".html"))
+})
+
 app.listen(process.env.PORT || 8000, () => {
     console.info("Server is running!");
 })

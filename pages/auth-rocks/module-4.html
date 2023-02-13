@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CIC Acceleration Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the CIC Acceleration Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: Multi-Factor Authentication</i></h3>
+            <p>Powered by Okta</p>
+            <a href="/rocks/module-0">Back to Overview</a>
+        </div>
+    </header>
+
+
+    <section id="overview">
+        In this challenge you will see how easy it is to strengthen the overall security of your application by adding
+        multi-factor authentication.
+        <br>
+        And the best part ... no code required!
+
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            In this first task of Challenge 4, we will enable one of Okta CIC's many factor types (SMS) in your CIC
+            tenant. After you complete the steps to configure the factors, you will define the policy for when users
+            will be prompted to complete additional authentication steps.
+
+            <h2>Enable MFA</h2>
+            <ol>
+                <li>
+                    Switch to the browser tab where you have your CIC management dashboard open.
+                </li>
+                <li>
+                    In the left menu panel, expand the Security option.
+                </li>
+                <li>
+                    Click Multi-factor Auth
+                </li>
+                <li>
+                    In the Factors section, choose the factors you want to enable with toggles. Any or all of the
+                    factors can be enabled simultaneously. For this challenge we will enable phone message as the only
+                    factor. When a user attempts to authenticate with your application, they are sent a code via SMS or
+                    voice, which they have to enter to complete the transaction.
+                    <ul>
+                        <li>
+                            Click on the Phone Message factor
+                        </li>
+                        <li>
+                            Enable the toggle switch in the top right corner (the red box in the screenshot below). You
+                            should get a popup message indicating that the "Phone Message is now enabled".
+                        </li>
+                        <li>
+                            Return to the previous screen by clicking the Back to Multi-factor Authentication
+                        </li>
+                        <li>
+                            Scroll down to the Define Policies section, and for Require Multi-factor Auth click Always
+                            to trigger MFA for all logins.
+                        </li>
+                        <li>
+                            Toggle the Enable Adaptive MFA Risk Assessment to record risk scores for all login
+                            transactions.
+                        </li>
+                        <li>
+                            Click Save.
+                        </li>
+                        <li>
+                            You should get a prompt asking "Are you sure you want to continue?". Click Continue.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            Learn more about the following topics mentioned in this task:
+            <br>
+            <a href="https://auth0.com/docs/secure/multi-factor-authentication">
+                Multi-factor-authentication
+
+            </a>
+            <br>
+            <a
+                href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa">
+                Configure SMS and Voice Notifications for MFA
+            </a>
+            Congratulations, you've completed task 4.1 by enabling Multi-factor Authentication in our Okta CIC tenant
+            with a policy to enforce a multi-factor authentication.
+
+            Please continue to the next task.
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            In this task, we will validate our new security policy by accessing the custom application.
+
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                </li>
+                <li>
+                    Go to the glitch_ui_app_url from the AuthRocks Worksheet
+                    <ol>
+                        <li>
+                            Login with the test user created in previous steps.
+                        </li>
+                        <li>
+                            Enter your phone number and click Continue
+                        </li>
+                        <li>
+                            Enter the code received on your device
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Check the logs to see risk scores.
+                    <br>
+                    In the Okta CIC Dashboard, click Monitoring > Logs
+                </li>
+                <li>
+                    Enter type:s in the query field
+                </li>
+                <li>
+                    Click the first Success Login log event
+                </li>
+                <li>
+                    Click inside the text box and then use your browser's find feature to search for riskAssessment. It
+                    will be on or around line 55.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+
+
+
+    <section id="cta">
+        This challenge strengthened the overall security of your application by adding multi-factor authentication.
+        Since the application was already integrated with Okta CIC, a second level of authentication was implemented
+        based on a policy without requiring any code changes.
+
+        <a href="/rocks/module-5" class="next-lab">To the next challenge</a>
+    </section>
+</body>
+
+</html>

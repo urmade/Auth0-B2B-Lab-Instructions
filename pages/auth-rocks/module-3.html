@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CIC Acceleration Lab</title>
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to the CIC Acceleration Lab!</h1>
+        <div class="sub">
+            <h3><i>Module: API Integration</i></h3>
+            <p>Powered by Okta</p>
+            <a href="/rocks/module-0">Back to Overview</a>
+        </div>
+    </header>
+
+
+    <section id="overview">
+        In this challenge, you will update the Glitch UI application so that the API endpoints in the Glitch API
+        application can be called.
+
+        You will then configure Okta CIC scopes, roles and permissions in order to issue the necessary OAuth tokens
+        required to access the API endpoints.
+
+        Finally, you will validate that users, with the correct access token, can access all of the API endpoints.
+
+        <img
+            src="https://play.instruqt.com/assets/tracks/lv1a1mjocuht/e9066ffacb08c89c9d34896635b92674/assets/images/challenge-2/challenge-2-cic-1.png">
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            1
+        </div>
+        <div class="content">
+            <h2>Modify Glitch UI Application </h2>
+            <ol>
+                <li>
+                    In Glitch, return to the source code page of your Glitch UI application.
+                    <blockquote>
+                        NOTE: You can see a list of your Glitch projects by clicking on the Glitch logo in the upper
+                        left corner of the Glitch page.
+                    </blockquote>
+                </li>
+                <li>
+                    In the left menu panel under Files, click index.html
+                    <ol>
+                        <li>
+                            Scroll down to line 291 in the index.html file.
+                        </li>
+                        <li>
+                            Set the value of baseAPIUrl on line 291 to the glitch_api_url value in the worksheet
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+            <h2>Test all three calls to the API endpoints</h2>
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                    <blockquote>
+                        NOTE: This MUST be a different browser session than the one you have been using
+                    </blockquote>
+                </li>
+                <li>
+                    Go to the glitch_ui_app_url specified in the worksheet
+                </li>
+                <li>
+                    Login with your test user account e.g. testuser1@test.com
+                </li>
+                <li>
+                    Click Public API. This first test should be successful because it is a Public API and is open to the
+                    world.
+                </li>
+                <li>
+                    Click Private API. This second test should fail based on an invalid access token. The access token
+                    does not contain the correct audience aud to call the private API
+                </li>
+                <li>
+                    Click Access API. This third test should also fail due to an invalid access token. Also, the access
+                    token is not scoped with the correct permissions claim to call the Access API.
+                </li>
+            </ol>
+            <h2>Back to your Glitch UI App </h2>
+            <ol>
+                <li>
+                    In the left menu panel under Files, click public/js/app.js
+                </li>
+                <li>
+                    Uncomment line 55 to add the API audience to the access token which will allow us to call the
+                    Private API.
+                </li>
+            </ol>
+            <h2>Test all three calls to the API endpoints, again.</h2>
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                    <blockquote>
+                        NOTE: This MUST be a different browser session than the one you have been using
+                    </blockquote>
+                </li>
+                <li>
+                    Go to the glitch_ui_app_url specified in the worksheet
+                </li>
+                <li>
+                    Login with your test user account e.g. testuser1@test.com
+                </li>
+                <li>
+                    Click Public API. This test should still be successful, its a public api.
+                </li>
+                <li>
+                    Click Private API. This second test should now be successful.
+                    <blockquote>
+                        If you look at the Access Token you will see the audience contains the value api://authrocks/
+                        which allows the user to call the Private API
+                    </blockquote>
+                </li>
+                <li>
+                    Click Access API. This third test should still fail. We have a valid access token but it does not
+                    have the correct permissions.
+                </li>
+            </ol>
+            If you look at the Access Token you will see the claim permissions is empty,
+            <br><br>
+
+            Congratulations, you've completed task 3.1.
+
+            Your Glitch application can successfully call the Public and Private APIs.
+
+            Please continue to task 3.2
+
+
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            2
+        </div>
+        <div class="content">
+            In this task, we will add a custom permission (scope) called "authRocks" to the "My AuthRocks API". We will
+            then create a custom role called "AuthRocks Access" and assign it our test user. This should allow our test
+            user to click the "Access API" button and get a successful response.
+
+            <h2>
+                Create a custom scope
+            </h2>
+            <ol>
+                <li>
+                    Switch to the browser tab where you have your CIC management dashboard open.
+                </li>
+                <li>
+                    In the left menu panel, expand the Applications option.
+                </li>
+                <li>
+                    Click APIs
+                </li>
+                <li>
+                    Click My AuthRocks API
+                </li>
+                <li>
+                    Click on the Permissions tab.
+                    <ol>
+                        <li>
+                            Set Permission (Scope) to authRocks
+                        </li>
+                        <li>
+                            Set Description to Provides access to the Access API via permissions
+                        </li>
+                        <li>
+                            Click + Add
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Verify that the List of Permissions (Scopes) shows the authRocks permission.
+                </li>
+            </ol>
+            <h2>Create a custom role</h2>
+            <ol>
+                <li> In the left menu panel of the CIC Management Dashboard, expand the User Management option.
+                </li>
+                <li>
+                    Click Roles
+                </li>
+                <li>
+                    Click + Create Role
+                    <ol>
+                        <li>
+                            Set the Name value to AuthRocks Access
+                        </li>
+                        <li>
+                            Set the Description value to Provides access to the private api://authrocks via permissions
+                        </li>
+                        <li>
+                            Click Create
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    On the Permissions tab, click Add Permissions
+                </li>
+                <li>
+                    On the Add Permissions screen, select the My AuthRocks API from the dropdown.
+                </li>
+                <li>
+                    Check the box for the authRocks Permission.
+                </li>
+                <li>
+                    Click Add Permissions
+                </li>
+                <li>
+                    Verify that the authRocks Permission was added to the My AuthRocks API
+                </li>
+                <li>
+                    On the Users tab of the AuthRocks Access screen, click Add Users
+                </li>
+                <li>
+                    Type <code>te</code> to start the search
+                </li>
+                <li>
+                    Select testuser1@test.com and click Assign
+                </li>
+            </ol>
+        </div>
+    </section>
+    <section id="auth0" class="list">
+        <div class="number">
+            3
+        </div>
+        <div class="content">
+            <ol>
+                <li>
+                    Launch a new browser profile or incognito tab
+                    <br>
+                    NOTE: This MUST be a different browser session than the one you have been using
+                </li>
+                <li>
+                    Go to the glitch_ui_app_url from the Worksheet
+                    <ol>
+                        <li>
+                            Login with your test user account e.g. testuser1@test.com
+                            <br>
+                            Your test user is now a member of the "AuthRocks Access" role.
+                        </li>
+                        <li>
+                            Verify that you have successfully logged in.
+                            <br>
+                            Spoiler alert: You access token has permissions
+                        </li>
+                        <li>
+                            Click Public API. Success!
+                        </li>
+                        <li>
+                            Click Private API. Success!
+                        </li>
+                        <li>
+                            Drumroll please... click Access API
+                            <ol>
+                                <li>
+                                    This third test should be successful for all users who are members of the "AuthRocks
+                                    Access" role because their access tokens will contains the required permission
+                                    "authRocks".
+                                </li>
+                                <li>
+                                    If you look at the Access Token you will see the permissions contains authRocks
+                                    which allows the user to call Access API
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+
+            <h2>Challenge 3 Review – Access the API</h2>
+            This challenge used a custom API with permission and roles, to add additional information to the token.
+
+            By the end of this challenge, a test user with the appropriate role is able to access all 3 API endpoints.
+        </div>
+    </section>
+
+
+
+
+
+    <section id="cta">
+        Congratulations, you've completed Challenge 3.
+
+        <a href="/rocks/module-4" class="next-lab">To the next challenge</a>
+    </section>
+</body>
+
+</html>
